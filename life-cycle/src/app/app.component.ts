@@ -7,6 +7,7 @@ import { ListaDeCompraService } from './service/lista-de-compra.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit, DoCheck{
   title = 'app-lista-de-compras';
   listaDeCompra! : Array<Item>
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit, DoCheck{
 
   constructor(private listaService: ListaDeCompraService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.listaDeCompra = this.listaService.getListaDeCompra();
     console.log(this.listaDeCompra);
   }
@@ -26,5 +28,11 @@ export class AppComponent implements OnInit, DoCheck{
   editarItem(item: Item)
   {
     this.itemParaSerEditado = item;
+  }
+
+  deletarItem(id: number)
+  {
+    const index = this.listaDeCompra.findIndex((item) => item.id === id);
+    this.listaDeCompra.splice(index, 1);
   }
 }
