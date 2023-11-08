@@ -18,10 +18,10 @@ export class AppComponent implements OnInit, DoCheck{
   ngOnInit(): void
   {
     this.listaDeCompra = this.listaService.getListaDeCompra();
-    console.log(this.listaDeCompra);
   }
 
   ngDoCheck(): void {
+    console.log('do checking....')
     this.listaService.atualizarLocalStorage();
   }
 
@@ -34,5 +34,13 @@ export class AppComponent implements OnInit, DoCheck{
   {
     const index = this.listaDeCompra.findIndex((item) => item.id === id);
     this.listaDeCompra.splice(index, 1);
+  }
+
+  limparLista()
+  {
+    while(this.listaDeCompra.length)
+    {
+      this.listaDeCompra.pop()
+    }
   }
 }
